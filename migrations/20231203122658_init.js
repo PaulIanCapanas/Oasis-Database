@@ -8,7 +8,7 @@ exports.up = function(knex) {
     table.integer('room_id').unsigned().notNullable();
     table.foreign('room_id').references('Room.id');
     table.integer('boarder_id').unsigned().notNullable();
-    table.foreign('boarder_id').references('boarder.id');
+    table.foreign('boarder_id').references('Boarder.id');
   })
 };
 
