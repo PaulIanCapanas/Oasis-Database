@@ -3,11 +3,11 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  return knex.schema.createTableIfNotExists('BuildingOwner', table => {
+  return knex.schema.createTableIfNotExists('Amenities', table => {
     table.increments('id').primary().unique().notNullable();
-    table.string('address').notNullable();
-    table.integer('owner_id').unsigned().notNullable();
-    table.foreign('owner_id').references('User.id');
+    table.string('features');
+    table.integer('building_id').unsigned().notNullable();
+    table.foreign('building_id').references('Building.id');
   })
 };
 
@@ -16,5 +16,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('BuildingOwner');
+  return knex.schema.dropTableIfExists('amenities');
 };

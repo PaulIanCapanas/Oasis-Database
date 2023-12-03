@@ -3,13 +3,15 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  return knex.schema.createTable('Rooms', table => {
-    table.increments('id').primary();
-    table.string('description');
-    table.string('type').notNullable();
-    table.string('status').notNullable();
+  return knex.schema.createTableIfNotExists('Reservations', table => {
+    table.increments('id').primary().unique().notNullable();
+    table.integer('user_id').unsigned().notNullable();
+    table.foreign('user_id').references('User.id');
     table.integer('building_id').unsigned().notNullable();
     table.foreign('building_id').references('Buildings.id');
+    table.timestamp('check_in').notNullable();
+    table.timestamp('check_out').notNullable();
+    table.timestamp('created_at').defaultTo(knex.fn.now());
   })
 };
 
@@ -18,5 +20,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  return knex.schema.dropTable('Rooms');
+  return knex.schema.dropTableIfExists('Reservations');
 };
