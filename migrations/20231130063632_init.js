@@ -13,7 +13,7 @@ exports.up = function(knex) {
     table.string('phone_number');
     table.integer('age').notNullable();
     table.string('user_type').notNullable();
-    table.timestamp(true, true);
+    table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
   })
 };
 
