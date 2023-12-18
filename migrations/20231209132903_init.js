@@ -9,9 +9,6 @@ exports.up = function(knex) {
     table
       .integer('contact_id').unsigned().notNullable()
       .references('Contacts.id');
-    table
-      .integer('sender_id').unsigned().notNullable()
-      .references('User.id');
   });
 };
 

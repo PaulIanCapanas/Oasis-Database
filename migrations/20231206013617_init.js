@@ -11,7 +11,7 @@ exports.up = function(knex) {
     table
       .integer('receiver_id').unsigned().notNullable()
       .references('User.id');
-    table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
+    table.datetime('created_at').notNullable().defaultTo(knex.fn.now());
   })
 };
 
