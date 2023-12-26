@@ -9,6 +9,8 @@ exports.up = function(knex) {
     table.increments('id').primary().unique().notNullable();
     table.string('name').notNullable();
     table.string('address').notNullable();
+    table.decimal('latitude', 8, 10).notNullable();
+    table.decimal('longitude', 8, 10).notNullable();
     table.integer('user_id').unsigned().notNullable();
     table.foreign('user_id').references('User.id');
   })
