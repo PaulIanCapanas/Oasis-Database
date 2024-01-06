@@ -4,8 +4,7 @@ exports.up = function (knex) {
     table.string('originalname').notNullable();
     table.string('filename').notNullable();
     table.string('path').notNullable()
-    table.integer('user_id').unsigned().notNullable();
-    table.foreign('user_id').references('User.id')
+    table.string('user_email').unsigned().notNullable();
     table.timestamp('createdAt').defaultTo(knex.fn.now());
   });
 };
