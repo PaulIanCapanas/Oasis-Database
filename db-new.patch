@@ -1,0 +1,47 @@
+diff --git a/.DS_Store b/.DS_Store
+new file mode 100644
+index 0000000..5008ddf
+Binary files /dev/null and b/.DS_Store differ
+diff --git a/knexfile.js b/knexfile.js
+index 77e0072..d8a800c 100644
+--- a/knexfile.js
++++ b/knexfile.js
+@@ -8,9 +8,9 @@ module.exports = {
+   development: {
+     client: 'postgresql',
+     connection: {
+-      database: 'Final_Project',
++      database: 'final_project',
+       user:     'postgres',
+-      password: 'postgres'
++      password: 'lesbolds'
+     },
+     seeds: {
+       directory: './seeds'
+diff --git a/migrations/20240106043330_init.js b/migrations/20240106043330_init.js
+new file mode 100644
+index 0000000..be8152f
+--- /dev/null
++++ b/migrations/20240106043330_init.js
+@@ -0,0 +1,21 @@
++/**
++ * @param { import("knex").Knex } knex
++ * @returns { Promise<void> }
++ */
++exports.up = function (knex) {
++  return knex.schema.alterTable('Building', t => {
++    t.double('latitude').alter();
++    t.double('longitude').alter();
++  })
++};
++
++/**
++ * @param { import("knex").Knex } knex
++ * @returns { Promise<void> }
++ */
++exports.down = function (knex) {
++  return knex.schema.alterTable('Building', t => {
++    t.float('latitude').alter();
++    t.float('longitude').alter();
++  })
++};
